@@ -31,13 +31,13 @@ void call_from_thread() {
         auto color = frameset.get_color_frame();
         if (color.get_data() != nullptr && outputBufferColor != NULL)
             memcpy((unsigned char *) outputBufferColor, color.get_data(),
-                   color.get_height() * color.get_stride_in_bytes());
+                   static_cast<size_t>(color.get_height() * color.get_stride_in_bytes()));
 
 
         auto depth = frameset.get_depth_frame();
         if (depth.get_data() != nullptr && outputBufferDepth != NULL)
             memcpy((unsigned char *) outputBufferDepth, depth.get_data(),
-                   depth.get_height() * depth.get_stride_in_bytes());
+                   static_cast<size_t>(depth.get_height() * depth.get_stride_in_bytes()));
 //       auto infrared = frameset.get_infrared_frame(0);
 //        if (infrared.get_data() != nullptr && outputBufferColor != NULL)
 //            memcpy((unsigned char *) outputBufferColor, infrared.get_data(),
@@ -67,7 +67,7 @@ Java_com_intel_realsense_android_MainActivity_librsStartStreaming(JNIEnv *env,
     //sensor.set_option(RS2_OPTION_VISUAL_PRESET, RS2_RS400_VISUAL_PRESET_HIGH_ACCURACY); //TODO: Bug - DOESNT WORK!
     isStreaming = true;
     t = std::thread(call_from_thread);
-    return true;
+    return static_cast<jboolean>(true);
 }
 
 extern "C"
@@ -81,5 +81,5 @@ Java_com_intel_realsense_android_MainActivity_librsStopStreaming(JNIEnv *env,
         t.join();
         p.stop();
     }
-    return true;
+    return static_cast<jboolean>(true);
 }

@@ -1857,17 +1857,17 @@ bool read_all_uvc_descriptors(usbhost_uvc_device *device, PUCHAR buffer, int buf
 }
 
 
-UsbManager &usbHost = UsbManager::getInstance();
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_intel_realsense_android_RealsenseUsbHostManager_nativeAddUsbDevice(JNIEnv *env,
-                                                                            jobject instance,
-                                                                            jstring deviceName_,
-                                                                            jint fileDescriptor) {
-    const char *deviceName = env->GetStringUTFChars(deviceName_, 0);
-    usbHost.AddDevice(deviceName, fileDescriptor);
-    env->ReleaseStringUTFChars(deviceName_, deviceName);
-}
+//UsbManager &usbHost = UsbManager::getInstance();
+//
+//extern "C"
+//JNIEXPORT void JNICALL
+//Java_ai_kronikare_realsensemodule_RealsenseUsbHostManager_nativeAddUsbDevice(JNIEnv *env,
+//                                                                            jobject instance,
+//                                                                            jstring deviceName_,
+//                                                                            jint fileDescriptor) {
+//    const char *deviceName = env->GetStringUTFChars(deviceName_, 0);
+//    usbHost.AddDevice(deviceName, fileDescriptor);
+//    env->ReleaseStringUTFChars(deviceName_, deviceName);
+//}
 
 #endif

@@ -3,6 +3,7 @@
 
 # Sets the minimum version of CMake required to build the native library.
 cmake_minimum_required(VERSION 3.6)
+set(ENV{LIBREALSENSE_SOURCE_ROOT_DIR} "/home/kronikare/KroniKare/RealSense")
 if(DEFINED ENV{LIBREALSENSE_SOURCE_ROOT_DIR})    
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs)
     add_subdirectory($ENV{LIBREALSENSE_SOURCE_ROOT_DIR} ${CMAKE_CURRENT_BINARY_DIR}/librealsense )
